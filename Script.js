@@ -8,13 +8,13 @@ const lowercaseBox = document.querySelector(".lowercase_box");
 const numberBox = document.querySelector(".number_box");
 const symbolBox = document.querySelector(".symbol_box");
 const strengthiIndicator = document.querySelector(".strength_indicator");
-const genPas = document.querySelector(".gen_pas");
+const genPas = document.querySelector(".gen_pass");
 const allChechbox = document.querySelectorAll("input[type=checkbox]");
-const Symbols = "~!@#$%^&*()_-+={[}]|:;<,>.?/";
+const Symbols = "~!@#$%^&*_?/";
 // functions for working
 let password = "";
 let passlen = 10;
-let count = 1;
+let count = 0;
 LenghtSlider();
 
 //lenght of password
@@ -51,8 +51,8 @@ function RandomLowerValue(){
 
 // any symbols from symbols list
 function RandomSymbolValue(){
-    const randSym = random(0,Symbols.length());
-    return Symbols.charCodeAt(randSym);
+    const randSym = GetRandomNum(0,Symbols.length);
+    return Symbols.charAt(randSym);
 
 }
 
@@ -118,6 +118,18 @@ function CheckUnchecked(){
     }
 }
 
+function SuffelPass(array){
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    let str = "";
+    array.forEach((el) => (str += el));
+    return str;
+}
+
 allChechbox.forEach((checkbox) =>{
     checkbox.addEventListener('change', CheckUnchecked)
 })
@@ -136,5 +148,38 @@ copyButton.addEventListener('click', () =>{
 
 //event when generatebutton is clicked
 genPas.addEventListener('click', () =>{
+    if(count == 0) 
+    return;
 
+    if(passlen < count){
+        passlen = count;
+        LenghtSlider();
+    }
+
+    password = "";
+    let FuncArr = [];
+
+    if(uppercaseBox.checked)
+        FuncArr.push(RandomUpperValue);
+    if(lowercaseBox.checked)
+        FuncArr.push(RandomLowerValue);
+    if(symbolBox.checked)
+        FuncArr.push(RandomSymbolValue);
+    if(numberBox.checked)
+        FuncArr.push(RandomIntValue);
+
+    for(let i=0; i<FuncArr.length;i++){
+        password += FuncArr[i]();
+    }
+
+    for(let i=0; i<passlen-FuncArr.length;i++){
+        let index = GetRandomNum(0,FuncArr.length);
+        password += FuncArr[index]();
+    }
+
+    password = SuffelPass(Array.from(password));
+
+    passArea.value = password;
+
+    SetStrengthColor();
 });
