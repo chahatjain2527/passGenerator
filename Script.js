@@ -11,22 +11,26 @@ const strengthiIndicator = document.querySelector(".strength_indicator");
 const genPas = document.querySelector(".gen_pass");
 const allChechbox = document.querySelectorAll("input[type=checkbox]");
 const Symbols = "~!@#$%^&*_?/";
+
 // functions for working
 let password = "";
 let passlen = 10;
 let count = 0;
 LenghtSlider();
-
+IndicatorColor("#fff")
 //lenght of password
 function LenghtSlider(){
     slider.value = passlen;
     passLenNum.innerText = passlen;
+    const _min = slider.min;
+    const _max = slider.max;
+    slider.style.backgroundSize = (passlen - _min)*100/(_max - _min) + "% 100%";
 }
 
 //set indicator color
 function IndicatorColor(color){
     strengthiIndicator.style.backgroundColor = color;
-    // set shadow also
+    strengthiIndicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
 // generate random number from min to max
@@ -65,24 +69,24 @@ function SetStrengthColor(){
     Num = (numberBox.checked) ? true : false;
 
     if(Upper && Lower && Symb && Num && passLenNum >= 8){
-        //Dark green for Strong
-        IndicatorColor('#ffffff');
+        // green for Strong
+        IndicatorColor('#008000');
     }
     else if(Upper && Lower && (Num || Symb) && passLenNum >= 8){
-        //Light Green good
-        IndicatorColor('#ffffff');
+        // Orange good
+        IndicatorColor('#ffa500');
     }
     else if(Upper && Lower && passLenNum >= 8){
-        // Dark yellow normal
-        IndicatorColor('#ffffff');
+        // yellow normal
+        IndicatorColor('#ffff41');
     }
     else if((Upper || Lower) && passLenNum >= 8){
-        //light yellow littel weak
-        IndicatorColor('#ffffff');
+        //light red littel weak
+        IndicatorColor('##ff5c5c');
     }
     else{
-        //red weak
-        IndicatorColor('#ffffff');
+        //dark red weak
+        IndicatorColor('#ff0000');
     }
 }
 
