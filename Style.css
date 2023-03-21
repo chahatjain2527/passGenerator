@@ -14,7 +14,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(green,blue,pink,red);
+    background: repeating-linear-gradient(45deg, #91ceff, #b1dcff 100px);
 }
 
 .container{
@@ -23,7 +23,7 @@ body{
 }
 
 h1{
-    color: white;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
@@ -32,9 +32,9 @@ h1{
 
 .show_pass{
     position: relative;
-    background-color: darkslategray;
-    border-radius: 1rem;
-    border-bottom: 0.35px solid darkorange;
+    background-color: rgb(255 255 255 / 25%);
+    border: 0.35px solid #e0f7ff;
+    border-radius: 1rem;    
     margin: 1rem 0;
     padding: 0.35rem;
 }
@@ -43,7 +43,7 @@ h1{
     width: 100%;
     background-color: transparent;
     padding: 1.15rem 1rem;
-    color: yellow;
+    color: #1f6f93;
     font-weight: 600;
     font-size: 1.5rem;
     line-height: 30px;
@@ -58,7 +58,7 @@ h1{
     left: 1.5rem;
     font-size: 1.5rem;
     line-height: 30px;
-    color: yellow;
+    color: #1f6f93;
     text-transform: uppercase;
 }
 
@@ -72,8 +72,8 @@ h1{
 
 .pass_detail{
     width: 100%;
-    background-color: darkslategray;
-    border-bottom: 0.35px solid darkorange;
+    background-color: rgb(255 255 255 / 25%);
+    border: 0.35px solid #e0f7ff;
     border-radius: 1rem;
     padding: 2rem;
 }
@@ -148,7 +148,7 @@ h1{
 }
 
 .check input:checked::before{
-    content: "o";
+    content: "✔";
     position: absolute;
     color: black;
     font-size: 1.05rem;

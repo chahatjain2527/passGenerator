@@ -10,7 +10,7 @@ const symbolBox = document.querySelector(".symbol_box");
 const strengthiIndicator = document.querySelector(".strength_indicator");
 const genPas = document.querySelector(".gen_pass");
 const allChechbox = document.querySelectorAll("input[type=checkbox]");
-const Symbols = "~!@#$%^&*_?/";
+const Symbols = "!@#$%&*_?/";
 
 // functions for working
 let password = "";
